@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핵심인재 교육 프로그램 포털</title>
+    <style>
+        :root {
+            --hc-black: #000000;
+            --hc-white: #ffffff;
+            --hc-gray-100: #f4f4f4;
+            --hc-gray-200: #e5e5e5;
+            --hc-gray-300: #999999;
+            --hc-gray-400: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--hc-white);
+            color: var(--hc-black);
+            line-height: 1.5;
+            padding: 50px 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --------------------------------------------------------------------
+           [GATEWAY HOME STYLES]
+        -------------------------------------------------------------------- */
+        #gatewayHome {
+            padding: 20px 0;
+        }
+
+        .welcome-header {
+            text-align: center;
+            border-bottom: 4px solid var(--hc-black);
+            padding-bottom: 40px;
+            margin-bottom: 60px;
+        }
+
+        .welcome-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        .welcome-header .date-stamp {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--hc-gray-300);
+            text-transform: uppercase;
+        }
+
+        /* 반응형 50:50 또는 수직 구조 카드 그리드 */
+        .track-grid {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .track-card {
+            flex: 1;
+            border: 1px solid var(--hc-black);
+            padding: 45px 40px;
+            background-color: var(--hc-white);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px;
+        }
+
+        .track-card:hover {
+            background-color: var(--hc-black);
+            color: var(--hc-white);
+        }
+
+        .track-card:hover .track-meta {
+            color: var(--hc-gray-300);
+        }
+
+        .track-card:hover .track-desc {
+            color: var(--hc-gray-200);
+        }
+
+        .track-card:hover .track-btn {
+            background-color: var(--hc-white);
+            color: var(--hc-black);
+            border-color: var(--hc-white);
+        }
+
+        .track-meta {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--hc-gray-300);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .track-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            word-break: keep-all;
+        }
+
+        .track-desc {
+            font-size: 14px;
+            color: var(--hc-gray-400);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            word-break: keep-all;
+        }
+
+        .track-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+            font-weight: 700;
+            border: 1px solid var(--hc-black);
+            background-color: var(--hc-black);
+            color: var(--hc-white);
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        /* --------------------------------------------------------------------
+           [SUB-PAGE SHARED STYLES]
+        -------------------------------------------------------------------- */
+        .page-view {
+            display: none; /* 기본적으로 비활성화 */
+        }
+
+        .back-nav {
+            margin-bottom: 25px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--hc-black);
+            text-decoration: none;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--hc-black);
+            padding-bottom: 2px;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            color: var(--hc-gray-300);
+            border-bottom-color: var(--hc-gray-300);
+        }
+
+        .header-container {
+            border-bottom: 4px solid var(--hc-black);
+            padding-bottom: 30px;
+            margin-bottom: 45px;
+        }
+
+        .header-container h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--hc-black);
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-meta p {
+            font-size: 15px;
+            color: var(--hc-gray-400);
+            font-weight: 400;
+        }
+
+        .header-meta .date-stamp {
+            font-size: 13.5px;
+            color: var(--hc-gray-300);
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--hc-black);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: var(--hc-gray-400);
+            margin-top: -15px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--hc-gray-200);
+            align-items: flex-end;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: 1px solid transparent;
+            border-bottom: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--hc-gray-300);
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+            position: relative;
+            bottom: -1px;
+        }
+
+        .tab-btn:hover {
+            color: var(--hc-black);
+        }
+
+        .tab-btn.active {
+            color: var(--hc-black);
+            border: 1px solid var(--hc-black);
+            background-color: var(--hc-white);
+            border-bottom: 1px solid var(--hc-white);
+            font-weight: 700;
+        }
+
+        .search-container {
+            margin-left: auto;
+            padding-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .sort-select {
+            padding: 8px 30px 8px 12px;
+            border: 1px solid var(--hc-gray-200);
+            font-size: 13px;
+            outline: none;
+            background-color: var(--hc-white);
+            cursor: pointer;
+            border-radius: 0;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M0 0l5 5 5-5z' fill='%23333333'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        .sort-select:focus {
+            border-color: var(--hc-black);
+        }
+
+        .search-box input {
+            width: 280px;
+            padding: 8px 12px;
+            border: 1px solid var(--hc-gray-200);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--hc-black);
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+            text-align: left;
+            border-top: 2px solid var(--hc-black);
+        }
+
+        th {
+            background-color: var(--hc-white);
+            color: var(--hc-black);
+            font-weight: 700;
+            padding: 14px 12px;
+            border-bottom: 1px solid var(--hc-black);
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        td {
+            padding: 15px 12px;
+            border-bottom: 1px solid var(--hc-gray-200);
+            color: var(--hc-gray-400);
+            vertical-align: top;
+        }
+
+        tbody tr:hover td {
+            background-color: var(--hc-gray-100);
+            color: var(--hc-black);
+        }
+
+        /* 배지 스펙 */
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .badge-active {
+            background-color: var(--hc-black);
+            color: var(--hc-white);
+        }
+
+        .badge-upcoming {
+            background-color: var(--hc-gray-200);
+            color: var(--hc-black);
+        }
+
+        .badge-closed {
+            background-color: var(--hc-gray-100);
+            color: var(--hc-gray-300);
+        }
+
+        .badge-provider {
+            background-color: var(--hc-black);
+            color: var(--hc-white);
+        }
+
+        .badge-institution {
+            background-color: var(--hc-gray-200);
+            color: var(--hc-black);
+        }
+
+        .badge-type {
+            background-color: transparent;
+            color: var(--hc-black);
+            border: 1px solid var(--hc-black);
+            padding: 1px 4px;
+            font-weight: 500;
+            font-size: 10.5px;
+        }
+
+        a {
+            color: var(--hc-black);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px solid var(--hc-black);
+        }
+
+        a:hover {
+            color: var(--hc-gray-300);
+            border-bottom-color: var(--hc-gray-300);
+        }
+
+        .sub-info {
+            font-size: 12px;
+            color: var(--hc-gray-300);
+            margin-top: 4px;
+            display: block;
+        }
+
+        .highlight-date {
+            font-weight: 700;
+            color: var(--hc-black);
+        }
+
+        /* --------------------------------------------------------------------
+           [MEDIA QUERIES (WEB vs MOBILE)]
+        -------------------------------------------------------------------- */
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+            .welcome-header h1 {
+                font-size: 28px;
+            }
+            .track-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .track-card {
+                min-height: auto;
+                padding: 35px 25px;
+            }
+            .header-container h1 {
+                font-size: 28px;
+            }
+            .header-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-container {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 10px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .sort-select, .search-box input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ======================================================================
+         [GATEWAY SCREEN]
+         ====================================================================== -->
+    <div id="gatewayHome">
+        <div class="welcome-header">
+            <h1>핵심인재 교육 프로그램 안내 포털</h1>
+            <div class="date-stamp">As of June 24, 2026</div>
+        </div>
+
+        <div class="track-grid">
+            <!-- TRACK 01 카드 -->
+            <div class="track-card" onclick="navigateTo('track01')">
+                <div>
+                    <div class="track-meta">Track 01 / Offline Premier</div>
+                    <h3>국내 우수 대학 단기 MBA 및 직무 전문가 과정</h3>
+                    <p class="track-desc">국내 유수의 경영대학원(서강대, 연세대, KAIST 등)에서 제공하는 고도화된 단기 MBA 프로그램 및 세무, 금융법무, 마케팅 특화 과정 리스트입니다.</p>
+                </div>
+                <button class="track-btn">View Track</button>
+            </div>
+
+            <!-- TRACK 02 카드 -->
+            <div class="track-card" onclick="navigateTo('track02')">
+                <div>
+                    <div class="track-meta">Track 02 / Online Global</div>
+                    <h3>글로벌 명문대 & 테크 기업 Coursera 과정</h3>
+                    <p class="track-desc">구글, IBM 등 글로벌 빅테크 기업 및 전 세계 유명 대학이 큐레이션한 생성형 AI 마스터 코스, 딥러닝 기술 심화 및 UX 디자인·PM 전문 온라인 라이선스 프로그램입니다.</p>
+                </div>
+                <button class="track-btn">View Track</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ======================================================================
+         [TRACK 01 VIEW: DOMESTIC MBA & EXPERTS]
+         ====================================================================== -->
+    <div id="track01Page" class="page-view">
+        <div class="back-nav">
+            <span class="back-link" onclick="navigateTo('home')">← Back to Portal Home</span>
+        </div>
+
+        <div class="header-container">
+            <h1>단기 MBA 및 직무 전문가 과정 리스트</h1>
+            <div class="header-meta">
+                <p>※ 해당 리스트 외 유사 과정 신청 가능</p>
+                <div class="date-stamp">As of June 24, 2026</div>
+            </div>
+        </div>
+
+        <!-- 섹션 1: 모집 중 과정 -->
+        <div class="section">
+            <h2>1. 현재 모집 중 및 3개월 이내 모집 예정 과정</h2>
+            <p class="section-desc">현재 신청이 가능하거나 곧 모집이 시작되는 교육과정 현황입니다.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">과정명</th>
+                            <th style="width: 20%;">기관</th>
+                            <th style="width: 35%;">과정 요약</th>
+                            <th style="width: 20%;">모집 기간</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong><a href="https://sogang.dherald.com/entr/sub1000" target="_blank">SHAPE 84기</a></strong></td>
+                            <td>서강대학교 경영전문대학원</td>
+                            <td>서강 MBA 핵심 에센스를 집약하여 수강하는 온라인 단기 집중 MBA 과정</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">2026.06.15 ~ 2026.08.12</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=157&sOpt=D" target="_blank">YONSEI Pre-MBA (8기)</a></strong></td>
+                            <td>연세대학교 상남경영원</td>
+                            <td>경영 핵심 툴킷을 집중 학습하여 실무 문제해결 역량을 강화하는 단기 MBA</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">2026.06.11 ~ 2026.09.04</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="https://www.business.kaist.ac.kr/html/executive/sub02/sub02_020402.html" target="_blank">혁신·변화관리과정 (50기)</a></strong></td>
+                            <td>KAIST 경영대학</td>
+                            <td>최신 경영이론 및 기업 변화관리 기법, 현장 지향 문제해결 교육 과정</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">~ 2026.08.24(월)까지</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="https://www.business.kaist.ac.kr/html/executive/sub09/sub02_090301.html" target="_blank">디지털금융전문가과정 AI와 핀테크</a></strong></td>
+                            <td>KAIST 경영대학</td>
+                            <td>AI 기술 원리, 핀테크 혁신 전략 및 금융 비즈니스 빅데이터 실무 연수 과정</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">~ 2026.08.17(월)까지</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=195&sOpt=D" target="_blank">연세 AI 리더 (AIL) 과정 (2기)</a></strong></td>
+                            <td>연세대학교 상남경영원</td>
+                            <td>AI 기술 구조 이해 및 비즈니스 데이터 지능 융합 전략 리더 양성</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">2026.06.10 ~ 2026.09.09</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=2&sOpt=D" target="_blank">연세 전략마케팅 리더십과정 (45기)</a></strong></td>
+                            <td>연세대학교 상남경영원</td>
+                            <td>고객 데이터 기반 인사이트 도출 기법 및 브랜드 포지셔닝 전략 수립 과정</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">2026.06.22 ~ 2026.09.09</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="https://e.asiae.co.kr/taxlitigation2/" target="_blank">제2기 조세쟁송 전문가 교육과정</a></strong></td>
+                            <td>아시아경제 · 서울시립대</td>
+                            <td>세무조사 대응 실무, 심사/심판청구 및 조세소송 사례 분석 특화</td>
+                            <td>
+                                <span class="badge badge-upcoming">모집 예정</span>
+                                <span class="sub-info highlight-date">2026.08.10 ~ 2026.09.18</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 섹션 2: 전체 비교 리스트 -->
+        <div class="section">
+            <h2>2. 전체 교육과정 현황 및 비교</h2>
+            <p class="section-desc">지원 가능한 단기 MBA 및 직무 전문가 과정의 전체 현황입니다. 카테고리 필터와 정렬, 검색 기능을 통해 확인하실 수 있습니다.</p>
+            
+            <div class="controls">
+                <div class="filter-tabs">
+                    <button class="tab-btn active" onclick="filterType('all')">전체보기</button>
+                    <button class="tab-btn" onclick="filterType('단기MBA')">단기 MBA</button>
+                    <button class="tab-btn" onclick="filterType('직무전문가')">직무 전문가 과정</button>
+                </div>
+                <div class="search-container">
+                    <select id="sortSelect" class="sort-select" onchange="sortTable()">
+                        <option value="default">기본 순서</option>
+                        <option value="status">상태 정렬순 (모집중 우선)</option>
+                    </select>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" onkeyup="searchCourse()" placeholder="과정명, 기관, 내용 검색...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="courseTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">유형</th>
+                            <th style="width: 16%;">과정명</th>
+                            <th style="width: 13%;">기관</th>
+                            <th style="width: 23%;">주요내용</th>
+                            <th style="width: 14%;">비용 (포함내역)</th>
+                            <th style="width: 8%;">기간</th>
+                            <th style="width: 8%;">교육날짜</th>
+                            <th style="width: 8%;">교육장소</th>
+                            <th style="width: 0%; display:none;">상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-type="단기MBA" data-index="1">
+                            <td><span class="badge badge-type">단기MBA</span></td>
+                            <td><a href="https://sogang.dherald.com/entr/sub1000" target="_blank">SHAPE 84기</a></td>
+                            <td>서강대학교<br>경영전문대학원</td>
+                            <td>서강 MBA 핵심 에센스를 집약한 온라인 단기 집중 MBA 프로그램</td>
+                            <td>210만 원<br><span class="sub-info">(입학금 10만 원 포함)</span></td>
+                            <td>6개월<br><span class="sub-info">(전체 교육 기간)</span></td>
+                            <td>온라인 자율 수강</td>
+                            <td>온라인 진행</td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
+                        <tr data-type="단기MBA" data-index="2">
+                            <td><span class="badge badge-type">단기MBA</span></td>
+                            <td><a href="https://biz.korea.ac.kr/eec/msp/admission.html" target="_blank">경영연구과정(MSP)</a></td>
+                            <td>고려대학교<br>경영대학</td>
+                            <td>기업 중간 관리자 및 전문직 대상 핵심 경영이론 및 실무 중심 연구</td>
+                            <td>수업료 700만 원<br><span class="sub-info">(원우회비, 해외연수비 별도)</span></td>
+                            <td>약 5개월<br><span class="sub-info">(03월 ~ 08월)</span></td>
+                            <td>매주 금요일</td>
+                            <td>고려대<br>경영본관</td>
+                            <td><span class="badge badge-closed">모집마감</span></td>
+                        </tr>
+                        <tr data-type="단기MBA" data-index="3">
+                            <td><span class="badge badge-type">단기MBA</span></td>
+                            <td><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=157&sOpt=D" target="_blank">YONSEI Pre-MBA</a></td>
+                            <td>연세대학교<br>상남경영원</td>
+                            <td>종합적 기업 경영 스킬셋 확보를 통해 다각적인 비즈니스 안목 제고</td>
+                            <td>680만 원<br><span class="sub-info">(석식, 주차, 해외워크숍 일체 포함)</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(09.09 ~ 12.23)</span></td>
+                            <td>매주 수요일<br>18:30~21:30</td>
+                            <td>연세대<br>상남경영원</td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="4">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://www.business.kaist.ac.kr/html/executive/sub02/sub02_020402.html" target="_blank">혁신·변화관리과정 (50기)</a></td>
+                            <td>KAIST<br>경영대학</td>
+                            <td>급변하는 비즈니스 환경 변화에 대응하는 기업 내 변화 관리 및 전략 교육</td>
+                            <td>650만 원<br><span class="sub-info">(해외연수비 별도)</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(2026.09.09 ~ 12.23)</span></td>
+                            <td>매주 수요일<br>13:00 ~ 18:30</td>
+                            <td>KAIST<br>서울캠퍼스</td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="5">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://www.business.kaist.ac.kr/html/executive/sub09/sub02_090301.html" target="_blank">디지털금융전문가<br>AI와 핀테크</a></td>
+                            <td>KAIST<br>경영대학</td>
+                            <td>AI 기술 원리 학습, 핀테크 혁신 전략 수립, 빅데이터 금융 실무 분석</td>
+                            <td>590만 원</td>
+                            <td>약 3개월<br><span class="sub-info">(2026.09.03 ~ 12.03)</span></td>
+                            <td>주 2회(월, 목)<br>19:00 ~ 22:00</td>
+                            <td>KAIST 여의도캠퍼스<br><span class="sub-info">(One IFC 17층)</span></td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="6">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=195&sOpt=D" target="_blank">연세 AI 리더 (AIL)</a></td>
+                            <td>연세대학교<br>상남경영원</td>
+                            <td>현업에 적용 가능한 최신 AI 트렌드 마스터 및 인공지능 사업 기획력 확보</td>
+                            <td>700만 원<br><span class="sub-info">(석식, 주차, AI키트, 해외워크숍 포함)</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(09.09 ~ 12.23)</span></td>
+                            <td>매주 수요일<br>18:30~21:30</td>
+                            <td>연세대<br>상남경영원</td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="7">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=2&sOpt=D" target="_blank">연세 전략마케팅 리더십 (45기)</a></td>
+                            <td>연세대학교<br>상남경영원</td>
+                            <td>고객 데이터 기반 인사이트 도출 기법 및 브랜드 포지셔닝 전략 수립</td>
+                            <td>680만 원<br><span class="sub-info">(석식, 주차, 해외워크숍 포함)</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(2026.09.09 ~ 12.23)</span></td>
+                            <td>매주 수요일<br>18:30 ~ 21:30</td>
+                            <td>연세대<br>상남경영원</td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="8">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://e.asiae.co.kr/taxlitigation2/">제2기 조세쟁송 전문가</a></td>
+                            <td>아시아경제 ·<br>서울시립대</td>
+                            <td>세무조사 대응 로드맵, 심사/심판청구 실무, 소장 작성 연습 등 소송 케이스 스터디</td>
+                            <td>440만 원<br><span class="sub-info">(부가세, 교재, 수료파티 비용 포함)</span></td>
+                            <td>13주<br><span class="sub-info">(09.03 ~ 12.03)</span></td>
+                            <td>매주 목요일<br>19:00~21:30</td>
+                            <td>서울시립대<br>100주년기념관</td>
+                            <td><span class="badge badge-upcoming">모집예정</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="9">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://kuirle.korea.ac.kr/irle/edu/relation.do" target="_blank">노사관계전문가과정</a></td>
+                            <td>고려대학교<br>노동문제연구소</td>
+                            <td>노사 공동 파트너십 형성, 노동 현안 및 분쟁 해결 대응 리더십 함양 교육</td>
+                            <td>등록금 350만 원<br><span class="sub-info">(1년 과정 전체 비용)</span></td>
+                            <td>약 6.5개월<br><span class="sub-info">(04.28 ~ 11.03)</span></td>
+                            <td>매주 화요일 16:30 ~ 19:30</td>
+                            <td>고려대<br>국제관</td>
+                            <td><span class="badge badge-closed">모집마감</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="10">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://www.cfl.re.kr/snulaw/recruit" target="_blank">금융법무과정</a></td>
+                            <td>서울대학교<br>금융법센터</td>
+                            <td>자본시장법 체계, 금융 신탁법 구조, 주요 컴플라이언스 쟁점 실무 연수</td>
+                            <td>등록금 500만 원<br><span class="sub-info">(블록 세미나 참가 비용 별도)</span></td>
+                            <td>15주<br><span class="sub-info">(03.04 ~ 06.10)</span></td>
+                            <td>매주 수요일<br>19:00~22:00</td>
+                            <td>서울대<br>법학전문대학원</td>
+                            <td><span class="badge badge-closed">모집마감</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="11">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=4&sOpt=D" target="_blank">고급기업분석가과정</a></td>
+                            <td>연세대학교<br>상남경영원</td>
+                            <td>재무/기획 담당자를 위한 재무제표 심층 분석 및 기업가치평가(Valuation) 교육</td>
+                            <td>680만 원<br><span class="sub-info">(석식, 주차, 해외워크숍 비용 포함)</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(03.11 ~ 06.24)</span></td>
+                            <td>매주 수요일<br>18:30~21:30</td>
+                            <td>연세대<br>상남경영원</td>
+                            <td><span class="badge badge-closed">모집마감</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ======================================================================
+         [TRACK 02 VIEW: COURSERA ONLINE GLOBAL]
+         ====================================================================== -->
+    <div id="track02Page" class="page-view">
+        <div class="back-nav">
+            <span class="back-link" onclick="navigateTo('home')">← Back to Portal Home</span>
+        </div>
+
+        <div class="header-container">
+            <h1>Coursera 프로그램 추천 리스트</h1>
+            <div class="header-meta">
+                <p>※ 해당 리스트 외 유사 과정 신청 가능</p>
+                <div class="date-stamp">As of June 24, 2026</div>
+            </div>
+        </div>
+
+        <!-- 1번 영역: AI 역량 강화 과정 -->
+        <div id="aiSection" class="section">
+            <h2>1. AI 역량 강화 과정</h2>
+            <p class="section-desc">회사에서 선정한 핵심인재들의 AI 역량 강화를 목적으로 구성된 카테고리입니다. Tech 기업의 최신 실무 기술과 글로벌 유명 대학의 깊이 있는 AI 원리 강의를 기본으로 제공하며, 비개발 기획 직군과 개발·데이터 직군의 니즈에 맞추어 맞춤형 커리큘럼을 지원합니다.</p>
+            
+            <div class="controls">
+                <div class="filter-tabs">
+                    <button class="tab-btn active" onclick="filterAiTable('all')">전체보기</button>
+                    <button class="tab-btn" onclick="filterAiTable('비개발기획')">비개발 기획 직군</button>
+                    <button class="tab-btn" onclick="filterAiTable('개발데이터')">개발 · 데이터 직군</button>
+                </div>
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="aiSearch" onkeyup="searchAiTable()" placeholder="과정명, 제공처, 핵심 내용 검색...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="aiTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">직무 트랙</th>
+                            <th style="width: 15%;">구분</th>
+                            <th style="width: 33%;">강의명 (제공처)</th>
+                            <th style="width: 32%;">핵심 내용 및 추천 이유</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-type="비개발기획">
+                            <td><span class="badge badge-type">비개발 기획</span></td>
+                            <td><span class="badge badge-provider">테크 기업</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/ai-essentials-google" target="_blank">Google AI Essentials</a></strong><br><span class="sub-info">Google</span></td>
+                            <td>실무진의 일상 업무 자동화(Gemini 활용, 이메일/데이터 요약/기획안 초안 작성)에 초점을 맞춘 단기 압축 전문가 인증 코스</td>
+                        </tr>
+                        <tr data-type="비개발기획">
+                            <td><span class="badge badge-type">비개발 기획</span></td>
+                            <td><span class="badge badge-provider">테크 기업</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/generative-ai-for-business-analysts" target="_blank">Generative AI for Business Analysts Specialization</a></strong><br><span class="sub-info">IBM</span></td>
+                            <td>비즈니스 분석 라이프사이클 전반에 생성형 AI를 접목하여 요구사항 정의, 프로세스 모델링, 데이터 기반 의사결정을 자동화하는 실무 과정</td>
+                        </tr>
+                        <tr data-type="비개발기획">
+                            <td><span class="badge badge-type">비개발 기획</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/learn/generative-ai-for-everyone" target="_blank">Generative AI for Everyone</a></strong><br><span class="sub-info">DeepLearning.AI</span></td>
+                            <td>앤드류 응 교수의 시그니처 강의. 비기술직이 생성형 AI 트렌드를 읽고 비즈니스 기회와 리스크를 판별하기 위한 필수 소양 교육의 교과서</td>
+                        </tr>
+                        <tr data-type="비개발기획">
+                            <td><span class="badge badge-type">비개발 기획</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/ai-for-business-wharton" target="_blank">AI For Business Specialization</a></strong><br><span class="sub-info">와튼 스쿨 - 펜실베이니아 대학</span></td>
+                            <td>마케팅, 재무, HR 등 경영 전반의 AI 전략 도입을 다루며, 리더십 계층에 꼭 필요한 AI 거버넌스 및 리스크 관리를 전수</td>
+                        </tr>
+                        <tr data-type="비개발기획">
+                            <td><span class="badge badge-type">비개발 기획</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/learn/prompt-engineering" target="_blank">Prompt Engineering for ChatGPT</a></strong><br><span class="sub-info">밴더빌트 대학</span></td>
+                            <td>단순 질문을 넘어 프롬프트 패턴(Prompt Patterns)을 활용해 복잡한 비즈니스 프레임워크나 애플리케이션을 설계하는 고도화된 스킬 코스</td>
+                        </tr>
+                        <tr data-type="개발데이터">
+                            <td><span class="badge badge-type">개발 · 데이터</span></td>
+                            <td><span class="badge badge-provider">테크 기업</span></td>
+                            <td><strong><a href="https://www.coursera.org/professional-certificates/ibm-rag-and-agentic-ai" target="_blank">IBM RAG and Agentic AI Professional Certificate</a></strong><br><span class="sub-info">IBM</span></td>
+                            <td>LangChain, LangGraph 기반의 기업 맞춤형 RAG(검색 증강 생성) 시스템 및 스스로 판단하고 행동하는 자율형 AI 에이전트 설계 아키텍처 학습</td>
+                        </tr>
+                        <tr data-type="개발데이터">
+                            <td><span class="badge badge-type">개발 · 데이터</span></td>
+                            <td><span class="badge badge-provider">테크 기업</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/machine-learning-operations-mlops-on-google-cloud" target="_blank">Machine Learning Operations (MLOps) on Google Cloud Specialization</a></strong><br><span class="sub-info">Google Cloud</span></td>
+                            <td>개발한 AI 모델 프로토타입을 엔터프라이즈급 실서비스로 안전하게 배포, 모니터링, 자동화하기 위한 Vertex AI 중심의 MLOps 파이프라인 구축</td>
+                        </tr>
+                        <tr data-type="개발데이터">
+                            <td><span class="badge badge-type">개발 · 데이터</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank">Machine Learning Specialization</a></strong><br><span class="sub-info">스탠포드 대학 & DeepLearning.AI</span></td>
+                            <td>지도/비지도학습, 추천 시스템 등 현대 AI 아키텍처를 깊이 있게 다루기 전 반드시 마스터해야 하는 수학적·논리적 인프라 다지기 과정</td>
+                        </tr>
+                        <tr data-type="개발데이터">
+                            <td><span class="badge badge-type">개발 · 데이터</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/deep-learning" target="_blank">Deep Learning Specialization</a></strong><br><span class="sub-info">DeepLearning.AI</span></td>
+                            <td>인공신경망, CNN, RNN 등 딥러닝 핵심 알고리즘을 파이썬과 텐서플로우로 직접 구현하며 모델의 동작 원리를 뼈대부터 이해하는 과정</td>
+                        </tr>
+                        <tr data-type="개발데이터">
+                            <td><span class="badge badge-type">개발 · 데이터</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/natural-language-processing" target="_blank">Natural Language Processing Specialization</a></strong><br><span class="sub-info">DeepLearning.AI</span></td>
+                            <td>Transformer, BERT, Attention 메커니즘 등 현재의 생성형 AI와 대형언어모델(LLM)을 탄생시킨 자연어 처리(NLP) 기술의 심화 구현 역량 확보</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 2번 영역: 기타 직무 전문 강의 -->
+        <div id="jobSection" class="section">
+            <h2>2. 기타 직무 전문 강의</h2>
+            <p class="section-desc">금융회사 직원으로서 디지털 전환기에 비즈니스 경쟁력을 확보하고 각 세부 분야의 깊이를 더할 수 있는 전문 과정 카테고리입니다. 전략기획, 핀테크, 마케팅, 리스크 관리뿐만 아니라 독보적인 고객 경험을 설계하기 위한 UI/UX 디자인 및 프로덕트 매니지먼트(PM) 과정까지 포함하여 직무별 성장을 지원합니다.</p>
+            
+            <div class="controls" style="justify-content: flex-end;">
+                <div class="search-container" style="margin-left: 0; width: 100%; max-width: 320px;">
+                    <div class="search-box" style="width: 100%;">
+                        <input type="text" id="jobSearch" onkeyup="searchJobTable()" style="width: 100%;" placeholder="직무, 과정명, 제공처 검색...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="jobTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">추천 직무</th>
+                            <th style="width: 15%;">구분</th>
+                            <th style="width: 33%;">강의명 (제공처)</th>
+                            <th style="width: 32%;">핵심 내용 및 추천 이유</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge badge-type">전략기획 / 상품개발</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/learn/financial-markets" target="_blank">Financial Markets</a></strong><br><span class="sub-info">예일 대학</span></td>
+                            <td>금융 시장의 경제적 원리, 증권 및 카드/보험 산업의 메커니즘을 행동 재무학 관점에서 풀어내어 거시적 통찰력과 상품 기획 안목 리빌딩</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-type">디지털금융 / 핀테크</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/fintech" target="_blank">FinTech: Foundations, Payments, and Regulations</a></strong><br><span class="sub-info">홍콩과학기술대학 (HKUST)</span></td>
+                            <td>금융 테크놀로지의 핵심인 디지털 결제 시스템(Payments), 블록체인, 그리고 금융 규제(RegTech)의 상호작용 및 미래 결제 비즈니스 전략 수립</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-type">마케팅 / 데이터 분석</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/business-analytics" target="_blank">Business Analytics Specialization</a></strong><br><span class="sub-info">와튼 스쿨 - 펜실베이니아 대학</span></td>
+                            <td>고객 데이터(Customer Analytics)를 기반으로 소비자 행동을 예측하고, 이를 마케팅 및 브랜드 세그멘테이션 전략에 정교하게 결합하는 방법론</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-type">리스크관리 / 자산운용</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/financialengineering" target="_blank">Financial Engineering and Risk Management</a></strong><br><span class="sub-info">컬럼비아 대학</span></td>
+                            <td>파생상품 가격 결정 모델, 신용 리스크(Credit Risk) 모델링, 자산 배분 최적화 아키텍처를 깊이 있게 학습하여 계량적 리스크 관리 역량 극대화</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-type">HR / 경영지원</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/learn/wharton-people-analytics" target="_blank">People Analytics</a></strong><br><span class="sub-info">와튼 스쿨 - 펜실베이니아 대학</span></td>
+                            <td>데이터 기반(Data-driven)으로 우수 인재를 채용·유지하며 조직 내 협업 네트워크를 분석하는 최신 HR 방법론 및 인재 파이프라인 관리 체계 구축</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-type">UI / UX 디자인</span></td>
+                            <td><span class="badge badge-provider">테크 기업</span></td>
+                            <td><strong><a href="https://www.coursera.org/professional-certificates/google-ux-design" target="_blank">Google UX Design Professional Certificate</a></strong><br><span class="sub-info">Google</span></td>
+                            <td>사용자 리서치부터 와이어프레임 구축, Figma 프로토타입 제작까지 엔드투엔드로 다루며 금융 앱의 복잡한 온보딩 및 결제 동선을 심플하게 개선</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-type">서비스 기획 / PM</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/uva-darden-digital-product-management" target="_blank">Digital Product Management Specialization</a></strong><br><span class="sub-info">버지니아 대학</span></td>
+                            <td>고객의 진짜 페인 포인트(Pain Point)를 발견해 제품 가치 제안을 정립하고, 애자일 방식으로 아이디어를 빠르게 프로덕션화하는 로드맵 설계 역량 확보</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-type">고객경험(CX) 전략</span></td>
+                            <td><span class="badge badge-institution">교육 기관</span></td>
+                            <td><strong><a href="https://www.coursera.org/specializations/interaction-design" target="_blank">Interaction Design Specialization</a></strong><br><span class="sub-info">UC 샌디에이고</span></td>
+                            <td>인간-컴퓨터 상호작용(HCI) 이론 기반 인지 부담 최소화 디자인 원칙 및 미세한 UI 차이가 금융 비즈니스의 전환율에 미치는 영향을 데이터로 검증</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --------------------------------------------------------------------
+    // [PAGE NAVIGATION SCRIPT]
+    // --------------------------------------------------------------------
+    function navigateTo(target) {
+        document.getElementById('gatewayHome').style.display = 'none';
+        document.getElementById('track01Page').style.display = 'none';
+        document.getElementById('track02Page').style.display = 'none';
+
+        if (target === 'home') {
+            document.getElementById('gatewayHome').style.display = 'block';
+            window.scrollTo(0, 0);
+        } else if (target === 'track01') {
+            document.getElementById('track01Page').style.display = 'block';
+            window.scrollTo(0, 0);
+        } else if (target === 'track02') {
+            document.getElementById('track02Page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    }
+
+    // --------------------------------------------------------------------
+    // [TRACK 01 CONTROL LOGIC]
+    // --------------------------------------------------------------------
+    let currentType = 'all';
+
+    function filterType(type) {
+        currentType = type;
+        const buttons = document.querySelectorAll('#track01Page .filter-tabs .tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        if(event && event.target) {
+            event.target.classList.add('active');
+        }
+        applyTrack01Filters();
+    }
+
+    function searchCourse() {
+        applyTrack01Filters();
+    }
+
+    function applyTrack01Filters() {
+        const searchValue = document.getElementById('searchInput').value.toLowerCase();
+        const table = document.getElementById('courseTable');
+        const trs = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        for (let i = 0; i < trs.length; i++) {
+            const row = trs[i];
+            const rowType = row.getAttribute('data-type');
+            const textContent = row.textContent.toLowerCase();
+            
+            const matchesType = (currentType === 'all' || rowType === currentType);
+            const matchesSearch = textContent.includes(searchValue);
+            
+            if (matchesType && matchesSearch) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+
+    function sortTable() {
+        const sortValue = document.getElementById('sortSelect').value;
+        const tbody = document.querySelector('#courseTable tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+
+        if (sortValue === 'status') {
+            const priority = { '현재모집중': 1, '모집예정': 2, '모집마감': 3 };
+            
+            rows.sort((a, b) => {
+                const statusA = a.querySelector('td:last-child .badge').textContent.trim();
+                const statusB = b.querySelector('td:last-child .badge').textContent.trim();
+                return (priority[statusA] || 99) - (priority[statusB] || 99);
+            });
+        } else {
+            rows.sort((a, b) => {
+                return a.getAttribute('data-index') - b.getAttribute('data-index');
+            });
+        }
+
+        rows.forEach(row => tbody.appendChild(row));
+    }
+
+    // --------------------------------------------------------------------
+    // [TRACK 02 CONTROL LOGIC]
+    // --------------------------------------------------------------------
+    let currentAiFilter = 'all';
+
+    function filterAiTable(type) {
+        currentAiFilter = type;
+        const buttons = document.querySelectorAll('#aiSection .tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        if (event && event.target) {
+            event.target.classList.add('active');
+        }
+        applyAiFilters();
+    }
+
+    function searchAiTable() {
+        applyAiFilters();
+    }
+
+    function applyAiFilters() {
+        const searchValue = document.getElementById('aiSearch').value.toLowerCase();
+        const table = document.getElementById('aiTable');
+        const trs = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        for (let i = 0; i < trs.length; i++) {
+            const row = trs[i];
+            const rowType = row.getAttribute('data-type');
+            const textContent = row.textContent.toLowerCase();
+            
+            const matchesType = (currentAiFilter === 'all' || rowType === currentAiFilter);
+            const matchesSearch = textContent.includes(searchValue);
+            
+            if (matchesType && matchesSearch) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+
+    function searchJobTable() {
+        const searchValue = document.getElementById('jobSearch').value.toLowerCase();
+        const table = document.getElementById('jobTable');
+        const trs = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        for (let i = 0; i < trs.length; i++) {
+            const row = trs[i];
+            const textContent = row.textContent.toLowerCase();
+            
+            if (textContent.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+</script>
+</body>
+</html>
