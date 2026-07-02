@@ -85,23 +85,16 @@
             min-height: 380px;
         }
 
+        /* [교정] 카드 전체에 대한 오버 효과는 완전히 배제 (오직 텍스트 정돈만 유지) */
         .track-card:hover {
-            background-color: var(--hc-black);
-            color: var(--hc-white);
+            border-color: var(--hc-black);
         }
 
-        .track-card:hover .track-meta {
-            color: var(--hc-gray-300);
-        }
-
-        .track-card:hover .track-desc {
-            color: var(--hc-gray-200);
-        }
-
-        .track-card:hover .track-btn {
-            background-color: var(--hc-white);
-            color: var(--hc-black);
-            border-color: var(--hc-white);
+        /* [교정] 이전 버전 디자인 복구: 마우스를 오직 VIEW TRACK 버튼 영역에 올렸을 때만 기존과 동일하게 화이트 반전 처리 */
+        .track-btn:hover {
+            background-color: var(--hc-white) !important;
+            color: var(--hc-black) !important;
+            border: 1px solid var(--hc-black) !important;
         }
 
         .track-meta {
@@ -460,11 +453,11 @@
     <div id="gatewayHome">
         <div class="welcome-header">
             <h1>핵심인재 교육 프로그램 안내 포털</h1>
-            <div class="date-stamp">As of June 30, 2026</div>
+            <div class="date-stamp">As of July 2, 2026</div>
         </div>
 
         <div class="track-grid">
-            <!-- TRACK 01 카드 (요청에 따라 괄호 및 대학명 안내 문구 삭제) -->
+            <!-- TRACK 01 카드 -->
             <div class="track-card" onclick="navigateTo('track01')">
                 <div>
                     <div class="track-meta">Track 01 / Offline Premier</div>
@@ -499,7 +492,7 @@
             <h1>단기 MBA 및 직무 전문가 과정 리스트</h1>
             <div class="header-meta">
                 <p>※ 해당 리스트 외 유사 과정 신청 가능</p>
-                <div class="date-stamp">As of June 30, 2026</div>
+                <div class="date-stamp">As of July 2, 2026</div>
             </div>
         </div>
 
@@ -529,6 +522,15 @@
                             </td>
                         </tr>
                         <tr>
+                            <td><strong><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=157&sOpt=D" target="_blank">YONSEI Pre-MBA (8기)</a></strong></td>
+                            <td>연세대학교 상남경영원</td>
+                            <td>경영 핵심 툴킷을 집중 학습하여 실무 문제해결 역량을 강화하는 단기 MBA</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">2026.06.11 ~ 2026.09.04</span>
+                            </td>
+                        </tr>
+                        <tr>
                             <td><strong><a href="https://www.business.kaist.ac.kr/html/executive/sub02/sub02_020402.html" target="_blank">혁신·변화관리과정 (50기)</a></strong></td>
                             <td>KAIST 경영대학</td>
                             <td>최신 경영이론 및 기업 변화관리 기법, 현장 지향 문제해결 교육 과정</td>
@@ -544,6 +546,24 @@
                             <td>
                                 <span class="badge badge-active">현재 모집중</span>
                                 <span class="sub-info highlight-date">~ 2026.08.17(월)까지</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=195&sOpt=D" target="_blank">연세 AI 리더 (AIL) 과정 (2기)</a></strong></td>
+                            <td>연세대학교 상남경영원</td>
+                            <td>AI 기술 구조 이해 및 비즈니스 데이터 지능 융합 전략 리더 양성</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">2026.06.10 ~ 2026.09.09</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=2&sOpt=D" target="_blank">연세 전략마케팅 리더십과정 (45기)</a></strong></td>
+                            <td>연세대학교 상남경영원</td>
+                            <td>고객 데이터 기반 인사이트 도출 기법 및 브랜드 포지셔닝 전략 수립 과정</td>
+                            <td>
+                                <span class="badge badge-active">현재 모집중</span>
+                                <span class="sub-info highlight-date">2026.06.22 ~ 2026.09.09</span>
                             </td>
                         </tr>
                         <tr>
@@ -620,6 +640,17 @@
                             <td>고려대<br>경영본관</td>
                             <td><span class="badge badge-closed">모집마감</span></td>
                         </tr>
+                        <tr data-type="단기MBA" data-index="3">
+                            <td><span class="badge badge-type">단기MBA</span></td>
+                            <td><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=157&sOpt=D" target="_blank">YONSEI Pre-MBA</a></td>
+                            <td>연세대학교<br>상남경영원</td>
+                            <td>종합적 기업 경영 스킬셋 확보를 통해 다각적인 비즈니스 안목 제고</td>
+                            <td>680만 원<br><span class="sub-info">(개인 부담금 100만 원 포함)</span><br><span class="sub-info">석식, 주차, 해외워크숍 일체 포함</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(09.09 ~ 12.23)</span></td>
+                            <td>매주 수요일<br>18:30~21:30</td>
+                            <td>연세대<br>상남경영원</td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
                         <tr data-type="직무전문가" data-index="4">
                             <td><span class="badge badge-type">직무전문가</span></td>
                             <td><a href="https://www.business.kaist.ac.kr/html/executive/sub02/sub02_020402.html" target="_blank">혁신·변화관리과정 (50기)</a></td>
@@ -640,6 +671,28 @@
                             <td>약 3개월<br><span class="sub-info">(2026.09.03 ~ 12.03)</span></td>
                             <td>주 2회(월, 목)<br>19:00 ~ 22:00</td>
                             <td>KAIST 여의도캠퍼스<br><span class="sub-info">(One IFC 17층)</span></td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="6">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=195&sOpt=D" target="_blank">연세 AI 리더 (AIL)</a></td>
+                            <td>연세대학교<br>상남경영원</td>
+                            <td>현업에 적용 가능한 최신 AI 트렌드 마스터 및 인공지능 사업 기획력 확보</td>
+                            <td>700만 원<br><span class="sub-info">(개인 부담금 100만 원 포함)</span><br><span class="sub-info">석식, 주차, AI키트, 해외워크숍 포함</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(09.09 ~ 12.23)</span></td>
+                            <td>매주 수요일<br>18:30~21:30</td>
+                            <td>연세대<br>상남경영원</td>
+                            <td><span class="badge badge-active">현재모집중</span></td>
+                        </tr>
+                        <tr data-type="직무전문가" data-index="7">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=2&sOpt=D" target="_blank">연세 전략마케팅 리더십 (45기)</a></td>
+                            <td>연세대학교<br>상남경영원</td>
+                            <td>고객 데이터 기반 인사이트 도출 기법 및 브랜드 포지셔닝 전략 수립</td>
+                            <td>680만 원<br><span class="sub-info">(개인 부담금 100만 원 포함)</span><br><span class="sub-info">석식, 주차, 해외워크숍 포함</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(2026.09.09 ~ 12.23)</span></td>
+                            <td>매주 수요일<br>18:30 ~ 21:30</td>
+                            <td>연세대<br>상남경영원</td>
                             <td><span class="badge badge-active">현재모집중</span></td>
                         </tr>
                         <tr data-type="직무전문가" data-index="8">
@@ -675,6 +728,17 @@
                             <td>서울대<br>법학전문대학원</td>
                             <td><span class="badge badge-closed">모집마감</span></td>
                         </tr>
+                        <tr data-type="직무전문가" data-index="11">
+                            <td><span class="badge badge-type">직무전문가</span></td>
+                            <td><a href="https://sim.yonsei.ac.kr/course.asp?mid=m02_02&mCourse=4&sOpt=D" target="_blank">고급기업분석가과정</a></td>
+                            <td>연세대학교<br>상남경영원</td>
+                            <td>재무/기획 담당자를 위한 재무제표 심층 분석 및 기업가치평가(Valuation) 교육</td>
+                            <td>680만 원<br><span class="sub-info">(개인 부담금 100만 원 포함)</span><br><span class="sub-info">석식, 주차, 해외워크숍 비용 포함</span></td>
+                            <td>약 3.5개월<br><span class="sub-info">(03.11 ~ 06.24)</span></td>
+                            <td>매주 수요일<br>18:30~21:30</td>
+                            <td>연세대<br>상남경영원</td>
+                            <td><span class="badge badge-closed">모집마감</span></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -694,7 +758,7 @@
             <h1>Coursera 프로그램 추천 리스트</h1>
             <div class="header-meta">
                 <p>※ 해당 리스트 외 유사 과정 신청 가능</p>
-                <div class="date-stamp">As of June 30, 2026</div>
+                <div class="date-stamp">As of July 2, 2026</div>
             </div>
         </div>
 
